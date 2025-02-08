@@ -14,7 +14,7 @@ env:
 jobs: 
 
   validate-version:
-    runs-on: windows-latest
+    runs-on: self-hosted
     outputs:
       is_valid: ${{ steps.get_validity.outputs.is_valid }}
 
@@ -73,7 +73,7 @@ jobs:
           echo "is_valid=$isValid" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
  
   download-Yui-patch:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     needs: validate-version
 
@@ -171,7 +171,7 @@ jobs:
           if-no-files-found: error
 
   download-msojocs-server:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     needs: validate-version
 
@@ -205,7 +205,7 @@ jobs:
           if-no-files-found: error
 
   download-fiddler-everywhere:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     needs: validate-version
 
@@ -246,7 +246,7 @@ jobs:
           if-no-files-found: error
 
   patch_fe:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     needs:
       - download-Yui-patch
