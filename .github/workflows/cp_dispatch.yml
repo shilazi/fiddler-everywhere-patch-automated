@@ -182,11 +182,11 @@ jobs:
         run: |
           git init
           git remote add origin https://github.com/msojocs/fiddler-everywhere-enhance.git
-          git config core.sparseCheckout true
+          git sparse-checkout init --cone
 
       - name: Configure sparse-checkout to download the server directory
         run: |
-          echo "server" | Out-File -Append -FilePath .git\info\sparse-checkout
+          git sparse-checkout set server 
           git pull origin main
 
       - name: Move the downloaded directory to the target folder
