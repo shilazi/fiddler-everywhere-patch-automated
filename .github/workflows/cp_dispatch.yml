@@ -178,21 +178,15 @@ jobs:
     if: ${{ needs.validate-version.outputs.is_valid }} == 'true'
     
     steps:
-      - name: Set up Git
+      - name: Configure sparse-checkout to download the server directory
         run: |
+          mkdir -p msojocs
+          cd msojocs
           git init
           git remote add origin https://github.com/msojocs/fiddler-everywhere-enhance.git
           git sparse-checkout init --cone
-
-      - name: Configure sparse-checkout to download the server directory
-        run: |
           git sparse-checkout set server 
           git pull origin main
-
-      - name: Move the downloaded directory to the target folder
-        run: |
-          mkdir -p msojocs
-          Move-Item -Path server -Destination msojocs/
 
       - name: List files in the msojocs/server directory
         run: Get-ChildItem -Path msojocs\server
