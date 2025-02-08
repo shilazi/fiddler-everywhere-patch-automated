@@ -5,7 +5,7 @@ on:
 
 jobs:
   scrape_fe_version:
-    runs-on: windows-latest
+    runs-on: self-hosted
     outputs:
       scraped_version: ${{ steps.set_scraped_version.outputs.scraped_version }}
 
@@ -43,7 +43,7 @@ jobs:
           echo "scraped_version=$fileContent" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
    
   download-Yui-patch:
-    runs-on: windows-latest
+    runs-on: self-hosted
     needs: 
       - scrape_fe_version
 
@@ -142,7 +142,7 @@ jobs:
           if-no-files-found: error
 
   download-msojocs-server:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     steps:
       - name: Set up Git
@@ -172,7 +172,7 @@ jobs:
           if-no-files-found: error
 
   download-fiddler-everywhere:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     needs: 
       - scrape_fe_version
@@ -212,7 +212,7 @@ jobs:
           if-no-files-found: error
 
   patch_fe:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     needs:
       - download-Yui-patch
