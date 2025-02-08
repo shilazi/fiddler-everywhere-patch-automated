@@ -6,7 +6,7 @@ on:
       version_to_patch:
         description: 'The Version You Want to Patch'
         required: true
-        default: '5.21.0'
+        default: '6.0.0'
 
 env:
   VERSION_TO_PATCH: ${{ github.event.inputs.version_to_patch }}
@@ -39,11 +39,11 @@ jobs:
 
       - name: Install Node.js dependencies
         run: npm ci
-        working-directory: utils/fe-version-validator
+        working-directory: ${{ github.workspace }}\utils\fe-version-validator
 
       - name: Run the Node.js script
         run: node .
-        working-directory: utils/fe-version-validator
+        working-directory: ${{ github.workspace }}\utils\fe-version-validator
 
       - name: Get Version Validity
         id: get_validity
